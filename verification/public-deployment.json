@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-13",
+  "deployed_commit": "08dc4a4",
+  "actions_run": "https://github.com/MohammedUmarAsif/sar-observatory/actions/runs/38418465981",
+  "public_url": "https://mohammedumarasif.github.io/sar-observatory/",
+  "source_hashes_match": true,
+  "published_nominal": {
+    "azimuth": {
+      "width_m": 0.29471074463536184,
+      "peak_m": 0.0,
+      "pslr_db": -13.666832070961032,
+      "islr_db": -10.088805744774518,
+      "mainlobe_bounds_m": [
+        -0.34999999999999964,
+        0.34999999999999964
+      ],
+      "window_m": [
+        -8.0,
+        8.0
+      ],
+      "width_quantization_bound_m": 0.09999999999999964
+    },
+    "ground_range": {
+      "width_m": 4.656186930959848,
+      "peak_m": 1000.0,
+      "pslr_db": -14.369130662781465,
+      "islr_db": -11.416432693475793,
+      "mainlobe_bounds_m": [
+        994.5,
+        1005.5
+      ],
+      "window_m": [
+        970.0,
+        1030.0
+      ],
+      "width_quantization_bound_m": 1.0
+    },
+    "localization_m": 0.0,
+    "peak_power": 0.9501578636289353,
+    "peak_xy_m": [
+      0.0,
+      1000.0
+    ]
+  },
+  "published_earth_methods": {
+    "fixed": {
+      "threshold_db": [
+        -17.0,
+        -17.0
+      ],
+      "fraction": [
+        0.10061359405517578,
+        0.8040485382080078
+      ],
+      "candidate_area_km2": [
+        10.5501,
+        84.3106
+      ],
+      "change_fraction": 0.703434944152832,
+      "blocks": [
+        {
+          "block_pixels": 64,
+          "block_m": 640.0,
+          "blocks": 256,
+          "replicates": 1000,
+          "change_fraction_interval_95": [
+            0.6775590896606445,
+            0.7295361757278442
+          ]
+        },
+        {
+          "block_pixels": 128,
+          "block_m": 1280.0,
+          "blocks": 64,
+          "replicates": 1000,
+          "change_fraction_interval_95": [
+            0.6565155744552612,
+            0.7474467515945434
+          ]
+        },
+        {
+          "block_pixels": 256,
+          "block_m": 2560.0,
+          "blocks": 16,
+          "replicates": 1000,
+          "change_fraction_interval_95": [
+            0.6311934232711792,
+            0.7717420101165771
+          ]
+        }
+      ]
+    },
+    "otsu": {
+      "threshold_db": [
+        -12.75390625,
+        -18.90625
+      ],
+      "fraction": [
+        0.4417095184326172,
+        0.4657011032104492
+      ],
+      "candidate_area_km2": [
+        46.3166,
+        48.8323
+      ],
+      "change_fraction": 0.02399158477783203,
+      "blocks": [
+        {
+          "block_pixels": 64,
+          "block_m": 640.0,
+          "blocks": 256,
+          "replicates": 1000,
+          "change_fraction_interval_95": [
+            -0.014828658103942871,
+            0.06397066116333007
+          ]
+        },
+        {
+          "block_pixels": 128,
+          "block_m": 1280.0,
+          "blocks": 64,
+          "replicates": 1000,
+          "change_fraction_interval_95": [
+            -0.04142894744873047,
+            0.09023776054382321
+          ]
+        },
+        {
+          "block_pixels": 256,
+          "block_m": 2560.0,
+          "blocks": 16,
+          "replicates": 1000,
+          "change_fraction_interval_95": [
+            -0.08019161224365234,
+            0.12449874877929686
+          ]
+        }
+      ]
+    }
+  },
+  "browser_tests": "4 passed, desktop/mobile, both themes, zero axe violations and console/network errors"
+}

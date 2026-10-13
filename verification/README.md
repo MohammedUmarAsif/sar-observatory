@@ -24,6 +24,7 @@ Checked 2026-10-13. Local Windows host; Python 3.12.5, locked dependencies.
 
 Screenshots are reproducible with `node scripts/capture-ui.cjs` and excluded from
 Git to avoid unnecessary binary duplication. Scientific figures, cropped data and
-machine-readable results are committed. Public deployment is verified separately
-with the same browser suite after Pages publishes; final status is recorded here
-when completed. Upstream RTC processing was documented, not independently rerun.
+machine-readable results are committed. Public deployment 08dc4a4 was verified on 2026-10-13 with the same four
+browser tests: all passed against the public URL, with zero axe violations and
+console/network errors. Published source hashes match the committed numerical
+modules. See public-deployment.json and Actions run 38418465981 for evidence. Upstream RTC processing was documented, not independently rerun.
