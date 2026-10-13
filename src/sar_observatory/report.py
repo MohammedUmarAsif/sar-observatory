@@ -172,4 +172,4 @@ independent co-registration checks; a controlled apodization study; a validated
 fractional-delay interpolator and precision/runtime tradeoff. Avoid deep learning
 until data and evaluation design actually justify it.
 """
-    (ROOT / "docs" / "report.md").write_text(content, encoding="utf-8")
+    (ROOT / "docs" / "report.md").write_text(content, encoding="utf-8", newline="\n")

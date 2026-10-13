@@ -27,5 +27,5 @@ for source in sorted((ROOT / "docs").glob("*.md")):
 <a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/{source.name}">
 Read this source on GitHub ↗</a></footer>
 </body></html>"""
-    (notes / f"{source.stem}.html").write_text(html, encoding="utf-8")
+    (notes / f"{source.stem}.html").write_text(html, encoding="utf-8", newline="\n")
 print(f"Built {len(list(notes.glob('*.html')))} static research notes.")

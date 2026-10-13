@@ -7,7 +7,7 @@
       "label": "Correct model",
       "manifest": {
         "schema": 1,
-        "key": "42ccde15b005be650686",
+        "key": "5101e687d24696a6fca3",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -33,8 +33,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -97,9 +97,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 0.6670475999999326,
-          "sampled_peak_rss_mib": 149.91015625,
-          "incremental_peak_rss_mib": 8.8984375,
+          "compression_and_focus_s": 0.6594476000009308,
+          "sampled_peak_rss_mib": 182.109375,
+          "incremental_peak_rss_mib": 7.91796875,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -1180,7 +1180,7 @@
       "label": "Velocity +1%",
       "manifest": {
         "schema": 1,
-        "key": "09a9ff864d0349b49fb9",
+        "key": "a3409cc59b4be7be5153",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -1206,8 +1206,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -1270,9 +1270,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 1.7798500999997486,
-          "sampled_peak_rss_mib": 165.0234375,
-          "incremental_peak_rss_mib": 7.6328125,
+          "compression_and_focus_s": 0.6600055999988399,
+          "sampled_peak_rss_mib": 197.1875,
+          "incremental_peak_rss_mib": 7.58984375,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -2349,7 +2349,7 @@
       "label": "Velocity +3%",
       "manifest": {
         "schema": 1,
-        "key": "dbf58f56f5473cf852d3",
+        "key": "676205805a1b1c55ac7f",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -2375,8 +2375,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -2439,9 +2439,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.804366200000004,
-          "sampled_peak_rss_mib": 177.44921875,
-          "incremental_peak_rss_mib": 7.71875,
+          "compression_and_focus_s": 0.6410875999990822,
+          "sampled_peak_rss_mib": 208.94921875,
+          "incremental_peak_rss_mib": 6.54296875,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -3518,7 +3518,7 @@
       "label": "Velocity +6%",
       "manifest": {
         "schema": 1,
-        "key": "d7368c0c31a4e0014887",
+        "key": "afae5c49e57500069940",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -3544,8 +3544,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -3608,9 +3608,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.7990226000001712,
-          "sampled_peak_rss_mib": 181.046875,
-          "incremental_peak_rss_mib": 7.5234375,
+          "compression_and_focus_s": 0.6570655000014085,
+          "sampled_peak_rss_mib": 212.98828125,
+          "incremental_peak_rss_mib": 6.39453125,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -4687,7 +4687,7 @@
       "label": "Residual Doppler +4 Hz",
       "manifest": {
         "schema": 1,
-        "key": "b298d7be94663f7907c6",
+        "key": "c7003afb5fd2a40ee270",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -4713,8 +4713,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -4777,9 +4777,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.8010517000002437,
-          "sampled_peak_rss_mib": 184.3984375,
-          "incremental_peak_rss_mib": 7.0859375,
+          "compression_and_focus_s": 0.6508551000006264,
+          "sampled_peak_rss_mib": 216.8671875,
+          "incremental_peak_rss_mib": 6.94921875,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -5856,7 +5856,7 @@
       "label": "Record SNR -25 dB",
       "manifest": {
         "schema": 1,
-        "key": "03ba0f822a5575ec207e",
+        "key": "51be0e0ba6d8bf08580e",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -5882,8 +5882,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -5946,9 +5946,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.780887500000972,
-          "sampled_peak_rss_mib": 185.14453125,
-          "incremental_peak_rss_mib": 8.17578125,
+          "compression_and_focus_s": 0.6687301000001753,
+          "sampled_peak_rss_mib": 220.5390625,
+          "incremental_peak_rss_mib": 6.9921875,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -7025,7 +7025,7 @@
       "label": "Record SNR -15 dB",
       "manifest": {
         "schema": 1,
-        "key": "b1d5beb0648bd8d22e52",
+        "key": "2481e5f574cf89137949",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -7051,8 +7051,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -7115,9 +7115,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.713058600000295,
-          "sampled_peak_rss_mib": 188.0390625,
-          "incremental_peak_rss_mib": 7.07421875,
+          "compression_and_focus_s": 0.6549436999994214,
+          "sampled_peak_rss_mib": 210.30859375,
+          "incremental_peak_rss_mib": 6.703125,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -8194,7 +8194,7 @@
       "label": "Record SNR +5 dB",
       "manifest": {
         "schema": 1,
-        "key": "ec82b1ba6176839dc533",
+        "key": "73b0c752f520e355814f",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -8220,8 +8220,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -8284,9 +8284,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.6338945999996213,
-          "sampled_peak_rss_mib": 191.33203125,
-          "incremental_peak_rss_mib": 7.51171875,
+          "compression_and_focus_s": 0.6646208000001934,
+          "sampled_peak_rss_mib": 213.046875,
+          "incremental_peak_rss_mib": 4.6171875,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -9363,7 +9363,7 @@
       "label": "Bandwidth 20 MHz",
       "manifest": {
         "schema": 1,
-        "key": "c35020c472120b8a03b5",
+        "key": "fa4f8ec728232cf8a9cd",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -9389,8 +9389,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -9453,9 +9453,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.737795400000323,
-          "sampled_peak_rss_mib": 195.30078125,
-          "incremental_peak_rss_mib": 7.97265625,
+          "compression_and_focus_s": 0.6595729999989999,
+          "sampled_peak_rss_mib": 215.6796875,
+          "incremental_peak_rss_mib": 5.8046875,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -10532,7 +10532,7 @@
       "label": "Bandwidth 60 MHz",
       "manifest": {
         "schema": 1,
-        "key": "f61a8d734c2fe93722e5",
+        "key": "1f1a79c888d31c06dcbe",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -10558,8 +10558,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -10622,9 +10622,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 2.7343307999999524,
-          "sampled_peak_rss_mib": 198.87890625,
-          "incremental_peak_rss_mib": 7.8828125,
+          "compression_and_focus_s": 0.6673378999985289,
+          "sampled_peak_rss_mib": 218.08984375,
+          "incremental_peak_rss_mib": 5.72265625,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
@@ -11701,7 +11701,7 @@
       "label": "Aperture 32 m",
       "manifest": {
         "schema": 1,
-        "key": "e4de4f8fed1fe84df5a9",
+        "key": "dba8fa6bc86000ab79df",
         "provenance": {
           "sensor": {
             "wavelength_m": 0.03,
@@ -11727,8 +11727,8 @@
             "experiments.py": "333d5fc264f3b3d869b63a229304e1403ff5405850700d8eb41102e9a61e7ef8",
             "focusing.py": "13aa85dcf5138891733ce4e2d1d4812ceacfe1de8f636d534708315cb837a05c",
             "metrics.py": "7f3c26c443b5d3d90c967548a79c1d13218448e745192e9bf482b88eafc25d6b",
-            "pipeline.py": "509610fb7f15d0322d8195636ed3c22ea6c175fcd9de39fb76b7c8a8ae191ada",
-            "report.py": "d0ff018b009c8a24c45f5252cd5cd47901fb35fd4e7d77b90b08a2de94bc20a9",
+            "pipeline.py": "1c09cda173983a69c531c9ed3e7bf17f33b7d0bf246678aee467b05d92ec0666",
+            "report.py": "887cf9a3bce360c89b0978626375928b04730f37c3a73bb48dd515c64ad05f5c",
             "simulator.py": "4ac4b7080f337bee02f6e1d51a8d582c67a25db371098c6ddcb8974470882c25"
           },
           "lock_sha256": "35d12ea5795521714b94925d35f96627f3b2d02296541d566320c54f502bd66b"
@@ -11791,9 +11791,9 @@
           }
         },
         "performance": {
-          "compression_and_focus_s": 1.3601766000010684,
-          "sampled_peak_rss_mib": 194.796875,
-          "incremental_peak_rss_mib": 4.921875,
+          "compression_and_focus_s": 0.3251261000004888,
+          "sampled_peak_rss_mib": 216.72265625,
+          "incremental_peak_rss_mib": 2.61328125,
           "rss_sampling_s": 0.01,
           "hardware": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
           "os": "Windows-11-10.0.26200-SP0",
