@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reproduce the observatory | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Reproduce the observatory</h1>
+<p>Requires Python 3.12 and uv; Node 22+ is needed only for browser verification.
+No credentials or Python server are required by the public website. Bundled
+licensed real-data crops allow the default full scientific demo to run offline
+after dependencies are installed. The entire source archive is available on GitHub.</p>
+<pre><code class="language-sh">git clone https://github.com/MohammedUmarAsif/sar-observatory.git
+cd sar-observatory
+uv sync --locked
+uv run pytest -q
+uv run ruff check .
+uv run ruff format --check .
+uv run ty check src
+uv run python -m sar_observatory.experiments --no-cache
+uv run python scripts/build_site.py
+</code></pre>
+<p>Serve locally for inspection (fetch cannot load artifacts from a file:// page):</p>
+<pre><code class="language-sh">uv run python -m http.server 8080 --directory site
+</code></pre>
+<p>Open <code>http://localhost:8080</code>. The deployed repository path is
+<code>https://mohammedumarasif.github.io/sar-observatory/</code>. Assets use relative paths
+and section links use hashes. Generated notes are plain HTML and refresh directly.</p>
+<h2>Download workflow</h2>
+<pre><code class="language-sh">uv run python -m sar_observatory.earth --fetch
+</code></pre>
+<p>If bundled TIFFs already exist, this preserves them. To redownload into a fresh
+clone, first move the two crop files to a backup location while retaining pinned
+<code>data/source/before.json</code> and <code>after.json</code>; then run the fetch command. The code
+requests ephemeral signed URLs from Planetary Computer, reads only bounded COG
+windows and never stores access tokens. Anonymous access succeeded during this
+build, but the provider documents account requirements and can change access.
+On denial, retain the bundled credential-free path and report the actual error.
+No multi-GB full acquisition is required. Approximate crop storage is 8 MB; COG
+window transfer may exceed that due to underlying tile compression and requests.
+Do not fetch or redistribute full proprietary/non-licensed datasets.</p>
+<h2>Numerical and artifact provenance</h2>
+<p><code>configs/demo.json</code> fixes acquisition parameters; each experiment changes one
+factor. Seeds are 17 for the main cases and 101-106 for noise repetitions.
+<code>uv.lock</code> pins packages; manifests include its hash and per-module SHA-256.
+<code>results/synthetic.json</code> contains scientific measurements and machine-specific
+runtime/RSS; <code>results/earth.json</code> contains acquisition metadata and crop hashes.
+<code>results/inventory.json</code> records SHA-256 for numerical artifacts, source records,
+licensed crops and published figures. Source file hashes are authoritative even
+while a generating change has not yet been committed. No secrets appear in artifacts.</p>
+<p>Complex stage arrays are cached under <code>artifacts/cache</code> and deliberately excluded
+from Git. Rerunning without <code>--no-cache</code> validates and reuses them. Images and
+tables regenerate from code. Runtime/RSS change across reruns and hardware; these
+are not bitwise reproducible performance results. Scientific values should be
+stable under the locked environment; FFT/library/platform variation may cause
+small floating-point differences. Raster reprocessing versions can change crop
+bytes, so published bundled crops define the reference numerical dataset.</p>
+<h2>Browser checks</h2>
+<pre><code class="language-sh">npm ci
+npx playwright install chromium
+npm test
+</code></pre>
+<p>The suite starts a local static server, checks desktop/mobile overflow, interactions,
+direct note links, broken images, console/network failures and axe accessibility.
+<code>verification/</code> contains a committed verification summary; local screenshots are
+excluded from Git. A public URL can be checked with
+<code>SAR_BASE_URL=https://mohammedumarasif.github.io/sar-observatory/ npm test</code> on POSIX,
+or <code>$env:SAR_BASE_URL='https://mohammedumarasif.github.io/sar-observatory/'; npm test</code>
+in PowerShell. GitHub Actions checks the science and deploys the checked static site.</p>
+<h2>Licences and authorship</h2>
+<p>Code is MIT licensed. Crop/data attribution is separate: contains modified
+Copernicus Sentinel data 2019 and 2020; Catalyst RTC via Planetary Computer,
+collection CC-BY-4.0. Primary references are linked in the research brief.
+Codex assistance is documented in AUTHORS.md. No employer affiliation or guarantee
+of employment is implied. Every scientific claim is limited to its implemented model,
+selected real crop and actual evidence.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/reproducibility.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

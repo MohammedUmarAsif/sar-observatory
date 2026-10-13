@@ -1,0 +1,116 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Failure atlas | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Failure atlas</h1>
+<p>Values and figures are generated in the <a href="report.html">research report</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Symptom</th>
+<th>Useful diagnostics</th>
+<th>What can mislead</th>
+<th>Remedy / next experiment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assumed velocity differs from true velocity</td>
+<td>Residual quadratic phase; defocus and coherent loss</td>
+<td>Width, peak power, sidelobe profile</td>
+<td>Peak normalization hides coherent loss</td>
+<td>Inspect motion model, estimate Doppler rate, rerun geometry sweep</td>
+</tr>
+<tr>
+<td>Residual +4 Hz linear Doppler phase</td>
+<td>Sharp peak moves along track</td>
+<td>Localization relative to known target</td>
+<td>Width passes; image looks sharp</td>
+<td>Estimate/compensate centroid and verify geometric truth</td>
+</tr>
+<tr>
+<td>Additive complex noise</td>
+<td>Higher sidelobe/background variability</td>
+<td>Repeated seeded trials, raw noise definition</td>
+<td>Six trials or one peak are not population evidence; coherent averaging reduces noise</td>
+<td>More seeds, lower SNR, prespecified diagnostics and false-positive study</td>
+</tr>
+<tr>
+<td>Bandwidth decreases</td>
+<td>Range response widens</td>
+<td>Ground/slant half-power width with bandwidth baseline</td>
+<td>Treating pixel spacing as resolution</td>
+<td>Increase bandwidth only with sufficient sampling and chirp support</td>
+</tr>
+<tr>
+<td>Aperture decreases</td>
+<td>Azimuth width increases</td>
+<td>Aperture-dependent analytic width</td>
+<td>Absolute width threshold would reject a valid short-aperture product</td>
+<td>Condition acceptance on actual acquisition parameters</td>
+</tr>
+<tr>
+<td>Low PRF</td>
+<td>Supported Doppler aliases</td>
+<td>Sampling checks reject configuration</td>
+<td>Peak shape may still look plausible</td>
+<td>Raise PRF or reduce supported aperture/scene; do not bypass validator</td>
+</tr>
+<tr>
+<td>Real-valued intensity supplied as raw</td>
+<td>Missing carrier phase</td>
+<td>Complex-dtype validation</td>
+<td>Detected pixels cannot recover I/Q</td>
+<td>Obtain valid complex input; use intensity workflow separately</td>
+</tr>
+<tr>
+<td>NaN injected into echo</td>
+<td>Invalid FFT/phase calculations</td>
+<td>Pre-stage finite-value check</td>
+<td>Downstream normalizers can conceal invalid values</td>
+<td>Fail before compression with explicit location/context</td>
+</tr>
+<tr>
+<td>Cached NPZ tampered</td>
+<td>Untrusted stage content</td>
+<td>Manifest SHA-256 mismatch</td>
+<td>A filename alone is not provenance</td>
+<td>Recompute that case; preserve source/config/lock hashes</td>
+</tr>
+<tr>
+<td>Otsu fitted independently to changing scenes</td>
+<td>Threshold shifts with histogram balance</td>
+<td>Per-date thresholds, disagreement, paired area change</td>
+<td>Adaptive does not mean more accurate</td>
+<td>Validate with compatible reference labels; use prespecified transfer threshold</td>
+</tr>
+<tr>
+<td>Dark SAR return</td>
+<td>Apparent water extent</td>
+<td>Geometry masks, external evidence, temporal context</td>
+<td>Shadow, wet soil, smooth land and wind effects</td>
+<td>Call it candidate water until independently confirmed</td>
+</tr>
+</tbody>
+</table>
+<h2>Corrupted-input demonstration</h2>
+<p><code>experiments.generate</code> inserts a NaN at raw[0,0]. The actual pipeline rejects it
+with <code>echo contains NaN/Inf; stop before range compression</code>. The website shows
+this recorded result, not a fake live server response. Scientific tests also
+reject real-valued and wrong-shape inputs.</p>
+<h2>Where simple diagnostics fail</h2>
+<p>Peak width cannot establish geometric accuracy: linear Doppler phase moves a sharp
+response. Peak-normalized plots cannot establish radiometric consistency: every
+image's strongest sample is mapped to 0 dB. A threshold-derived area cannot establish
+flood extent: the labels and physics of water/other dark surfaces are unresolved.
+These failures motivate combining physically distinct checks rather than one score.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/failure-atlas.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

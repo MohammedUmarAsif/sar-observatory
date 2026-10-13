@@ -1,0 +1,13 @@
+{
+  "wavelength_m": 0.03,
+  "altitude_m": 1000.0,
+  "center_ground_m": 1000.0,
+  "velocity_m_s": 100.0,
+  "bandwidth_hz": 40000000.0,
+  "sample_rate_hz": 160000000.0,
+  "pulse_s": 0.0000004,
+  "prf_hz": 800.0,
+  "pulses": 512,
+  "range_samples": 512,
+  "seed": 17
+}

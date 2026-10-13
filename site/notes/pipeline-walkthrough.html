@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One input through the pipeline | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>One input through the pipeline</h1>
+<p>Run <code>uv run python -m sar_observatory.experiments --no-cache</code> from the repository.</p>
+<ol>
+<li><code>configs/demo.json</code> creates a validated Sensor: X-band-like 0.03 m wavelength,
+   1 km altitude, 1 km ground range, 100 m/s velocity and a finite 64 m aperture.
+   These are chosen educational parameters, not a real mission configuration.</li>
+<li><code>scene</code> places an isolated unit complex target at (0,1000,0) m. <code>axes</code> creates
+   slow-time pulses about zero and fast-time samples about the centre delay.</li>
+<li><code>simulate</code> evaluates exact Euclidean slant range at each pulse, delays the
+   LFM waveform, adds two-way carrier phase and deterministically seeded noise.</li>
+<li><code>validate_raw</code> checks shape, complex dtype and finite values. The corrupted
+   example injects NaN at [0,0] and is rejected here, before compression or cache.</li>
+<li><code>range_compress</code> convolves every pulse with the reversed conjugate transmit
+   chirp. This is a linear, energy-normalized filter; phase remains available.</li>
+<li><code>backproject</code> predicts each pixel's delay and carrier phase, interpolates
+   complex samples and averages coherently over pulses. Its output is not yet
+   calibrated radar backscatter. The image is an arbitrary-reflectivity simulation.</li>
+<li><code>assess</code> measures cuts through the peak. <code>quality_gate</code> applies explicit
+   educational thresholds based on analytic width and known target position.</li>
+<li><code>run</code> saves complex NPZ stages and a manifest under <code>artifacts/cache/&lt;key&gt;</code>.
+   Its key incorporates source hashes, lock hash, configuration and raw-echo hash.
+   A reused stage file must match its saved SHA-256. A corrupted cache recomputes.</li>
+<li><code>experiments.generate</code> publishes numerical records in <code>results/synthetic.json</code>
+   and plot assets in <code>site/assets</code>. The real-data branch joins at this artifact
+   layer; no real intensity is routed into the complex simulator focuser.</li>
+<li><code>app.js</code> fetches immutable experiment records and selects an existing
+    image/profile. Browser geometry and reduced-grid thresholding are separately
+    labeled live calculations. <code>scripts/build_site.py</code> renders Markdown notes.</li>
+</ol>
+<h2>Restart and inspection</h2>
+<p>Rerunning the generation command without <code>--no-cache</code> reuses verified cached
+numerical stages while regenerating presentation artifacts. There is no scheduler,
+distributed worker or operational downlink ingestion. Whole-case caching is
+justified by the small deterministic stages; finer checkpoints would add complexity
+without meaningful benefit. Remove only a specific cache entry to force that case.
+Caches are not committed; published outputs and crops are. Logs are JSON lines
+with stage names, shapes, case keys and gate outcomes. Performance measurements
+describe the original numerical run retained in a cache manifest.</p>
+<h2>Trace exercise</h2>
+<p>Find the nominal case's raw-echo checksum in <code>results/synthetic.json</code>. Follow
+its manifest into the file hashes and then find the profile consumed by <code>app.js</code>.
+Change the velocity error to 0.01, predict what happens to coherent peak power,
+run the generator and explain which gate changed. Never edit JSON results by hand.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/pipeline-walkthrough.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

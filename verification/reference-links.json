@@ -1,0 +1,106 @@
+[
+  {
+    "url": "https://ai4edatasetspublicassets.blob.core.windows.net/assets/pdfs/sentinel-1/2011_Flattening_Gamma.pdf",
+    "status": 200
+  },
+  {
+    "url": "https://careers.synspective.com/o/kr8lcfsbty",
+    "status": 200
+  },
+  {
+    "url": "https://careers.synspective.com/o/sar-image-processing-engineer",
+    "status": 200
+  },
+  {
+    "url": "https://cds.climate.copernicus.eu/licences/ec-sentinel",
+    "status": 200
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+    "status": 200
+  },
+  {
+    "url": "https://docs.astral.sh/ruff/",
+    "status": 200
+  },
+  {
+    "url": "https://docs.astral.sh/uv/",
+    "status": 200
+  },
+  {
+    "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages",
+    "status": 200
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/",
+    "status": 200
+  },
+  {
+    "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.fftconvolve.html",
+    "status": 200
+  },
+  {
+    "url": "https://hyp3-docs.asf.alaska.edu/guides/rtc_product_guide/",
+    "status": 200
+  },
+  {
+    "url": "https://ieeexplore.ieee.org/document/4310076",
+    "status": 202
+  },
+  {
+    "url": "https://numpy.org/doc/stable/reference/routines.fft.html",
+    "status": 200
+  },
+  {
+    "url": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc",
+    "status": 200
+  },
+  {
+    "url": "https://playwright.dev/docs/test-assertions",
+    "status": 200
+  },
+  {
+    "url": "https://python-markdown.github.io/",
+    "status": 200
+  },
+  {
+    "url": "https://rasterio.readthedocs.io/en/stable/topics/windowed-rw.html",
+    "status": 200
+  },
+  {
+    "url": "https://research.chalmers.se/en/publication/6728",
+    "status": 200
+  },
+  {
+    "url": "https://science.nasa.gov/earth/earth-observatory/poyang-lake-extremes-146987/",
+    "status": 200
+  },
+  {
+    "url": "https://sentiwiki.copernicus.eu/web/s1-processing",
+    "status": 200
+  },
+  {
+    "url": "https://seom.esa.int/landtraining2015/files/Day_1/D1T1b_LTC2015_Younis.pdf",
+    "status": 200
+  },
+  {
+    "url": "https://www.dlr.de/de/hr/ueber-uns/abteilungen/sar-technologie/sar-signalverarbeitung",
+    "status": 200
+  },
+  {
+    "url": "https://www.esa.int/esapub/bulletin/bullet83/fran83.htm",
+    "status": 200
+  },
+  {
+    "url": "https://www.synspective.com/data/synspective-sar-data/",
+    "status": 200
+  },
+  {
+    "url": "https://www.synspective.com/document/",
+    "status": 200
+  },
+  {
+    "url": "https://www.synspective.com/files/co/document-files/SAR-Data-Product-Format-Manual_EN_v21-2.pdf",
+    "status": 200
+  }
+]

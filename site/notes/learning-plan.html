@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Four weeks inside SAR Observatory | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Four weeks inside SAR Observatory</h1>
+<p>The aim is to understand and modify the source without treating generated prose
+as knowledge. Each exercise follows the same loop: write a prediction, change
+one thing, regenerate, compare evidence and explain any disagreement. Save your
+own notes in a new file rather than claiming authorship of work you cannot defend.</p>
+<h2>Week one: geometry and coherent signals</h2>
+<p>Read config.py, simulator.py and math-to-code.md. Sketch platform/target
+coordinates and derive R(η). Calculate centre delay, sample spacing and aperture
+length by hand, then check <code>test_units_and_delay</code>. Explain phase cancellation
+without looking at the code. Plot real/imaginary echoes and compare with magnitude.</p>
+<p><strong>Exercise:</strong> predict what happens to range width at B=20 MHz. Run the existing
+<code>bandwidth-20</code> case, inspect ground width and compare the ratio with nominal.
+Change <code>configs/demo.json</code> to 30 MHz, regenerate, record analytic versus measured
+width and explain finite-chirp/interpolation differences. Restore the config afterward.</p>
+<p><strong>Deliverable:</strong> one-page explanation of delay versus phase, slant/ground geometry,
+sampling versus resolution and the simulator's omitted physics.</p>
+<h2>Week two: focusing and diagnostic behavior</h2>
+<p>Read focusing.py and metrics.py, then run the direct convolution and raw-reference
+tests. Derive why time reversal and conjugation are both required. Locate where
+range migration is handled. Explain each quality measure's units and window.</p>
+<p><strong>Exercise:</strong> before selecting residual +4 Hz, predict a displacement magnitude
+fλR/(2v). Compare the actual peak and gate outcomes. Add a +2 Hz experiment in
+<code>experiments.py</code>, regenerate and check the predicted half shift. Explain why the
+width gate still passes and whether the current localization tolerance catches it.</p>
+<p><strong>Extension:</strong> implement a Hann aperture taper with proper gain normalization.
+Predict broader mainlobe and lower sidelobes, add an independent weighting reference
+and keep the untapered baseline. Do not change thresholds merely to force acceptance.</p>
+<p><strong>Deliverable:</strong> a notebook or written derivation explaining coherent integration,
+model mismatch, width-only failure and finite-window sidelobe conventions.</p>
+<h2>Week three: real products and inference limits</h2>
+<p>Read real-data.md, the source STAC records and earth.py. Explain gamma-zero,
+linear power/dB, source RTC versus local resampling, product spacing versus resolution,
+and why GRD-derived intensity has no interferometric phase. Run the real workflow
+from the bundled crops and verify hashes.</p>
+<p><strong>Exercise:</strong> predict the direction of candidate-area changes at thresholds −19,
+−17 and −15 dB. Compare the sensitivity table. Re-estimate Otsu after changing the
+histogram bins to 128, record differences and explain why better class separation
+does not imply validated water accuracy. Restore the baseline and regenerate.</p>
+<p><strong>Evaluation exercise:</strong> design, without fabricating results, a held-out study with
+independent labels and temporal compatibility. Define calibration region, test region,
+mask rules, uncertain-label exclusions, spatial units and reporting metrics.</p>
+<p><strong>Deliverable:</strong> a defensible interpretation of the actual lake result, including
+the negative adaptive-threshold finding and every missing validation prerequisite.</p>
+<h2>Week four: reliable software and interview defense</h2>
+<p>Read pipeline.py, pipeline-walkthrough.md, manifests, CI and browser tests. Trace
+cache keys and understand why source/lock changes invalidate them. Run corrupted
+input/cache tests. Explain process RSS sampling and machine-specific runtime limits.</p>
+<p><strong>Exercise:</strong> change a supported configuration, predict which hashes and files change,
+run generation twice and explain the second run's cache logs. Deliberately tamper
+only a temporary test cache via the provided test, observe recomputation and explain
+why checksum verification matters. Do not corrupt the committed dataset.</p>
+<p>Practice the five-minute script with a timer. Then conduct the twenty-minute source
+walkthrough without notes. Answer follow-ups about FFT padding, phase signs, Otsu
+transfer, registration and missing terrain masks. Repeat any topic you cannot derive.</p>
+<p><strong>Deliverable:</strong> your own demonstration recording and a skills-to-evidence revision
+that clearly separates code reproduced/understood from remaining learning needs.</p>
+<h2>First practical exercise</h2>
+<p>Predict the effect of halving bandwidth before opening the laboratory. Compare
+nominal and 20 MHz: azimuth width should remain approximately constant while
+ground-range width should approximately double. Read <code>test_bandwidth_and_aperture_scaling</code>,
+run it with <code>uv run pytest -q -k bandwidth</code>, and explain the result in your own words.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/learning-plan.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

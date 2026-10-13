@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research brief | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Research brief</h1>
+<p>Access date for all links: 2026-10-13. Facts below were checked against primary
+sources. Implementation choices are identified separately. No Synspective
+affiliation, employment history, production experience or original research is claimed.</p>
+<h2>Verified career evidence</h2>
+<p><a href="https://careers.synspective.com/o/sar-image-processing-engineer">SAR Image Processing Engineer</a>
+describes pipeline architecture, algorithm integration, signal/geometry issue
+investigation and automated product verification. It asks for SAR/DSP foundations,
+maintainable scientific software and prior production ownership. This portfolio
+can evidence implemented fundamentals; it cannot substitute for that employment experience.</p>
+<p><a href="https://careers.synspective.com/o/kr8lcfsbty">SAR research engineer</a> emphasizes
+literature investigation, technical hypotheses, prototypes and validation.
+This is a paraphrase/interpretation of the Japanese public description.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement/theme</th>
+<th>Component</th>
+<th>Reviewable evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coherent formation and DSP</td>
+<td>Complex delayed chirps, linear matched filter, backprojection</td>
+<td>simulator.py, focusing.py, scientific tests</td>
+</tr>
+<tr>
+<td>Signal/geometry troubleshooting</td>
+<td>Velocity and residual Doppler sweeps</td>
+<td>experiments.py, results/synthetic.json, failure atlas</td>
+</tr>
+<tr>
+<td>Automated product verification</td>
+<td>Width/localization gates, rejected inputs</td>
+<td>pipeline.py, manifests, failure test</td>
+</tr>
+<tr>
+<td>Maintainable processing software</td>
+<td>Configuration validation, stage contracts, cache integrity</td>
+<td>config.py, pipeline.py, CI</td>
+</tr>
+<tr>
+<td>Calibration and geometry</td>
+<td>Real gamma-zero intensity on common UTM grid</td>
+<td>earth.py, real manifest</td>
+</tr>
+<tr>
+<td>Hypothesis testing and reporting</td>
+<td>Controlled sweeps, noise repetitions, independent calculations</td>
+<td>report.md, tests, provenance</td>
+</tr>
+</tbody>
+</table>
+<h2>Verified technical sources</h2>
+<ul>
+<li><a href="https://www.synspective.com/data/synspective-sar-data/">Synspective product descriptions</a>: distinguishes complex SLC and detected/geocoded product formats. Product-specific capabilities are not implemented here.</li>
+<li><a href="https://www.synspective.com/document/">Current document hub</a> lists product guide v19.0 and format manual v21.2. <a href="https://www.synspective.com/files/co/document-files/SAR-Data-Product-Format-Manual_EN_v21-2.pdf">Format manual v21.2</a>, dated 2026-09-16, includes product-specific calibration and processor-version metadata. This reinforces provenance/version checking; the project does not implement its proprietary product interfaces. Older indexed product-guide URLs returned 404 and were replaced with these checked primary pages.</li>
+<li><a href="https://www.esa.int/esapub/bulletin/bullet83/fran83.htm">ESA ERS coherent imaging</a>: chirp compression and coherent aperture integration underpin resolution.</li>
+<li><a href="https://seom.esa.int/landtraining2015/files/Day_1/D1T1b_LTC2015_Younis.pdf">ESA/DLR SAR training</a>: range bandwidth and aperture-based azimuth resolution. Rectangular weighting is the project's analytic baseline.</li>
+<li><a href="https://www.dlr.de/de/hr/ueber-uns/abteilungen/sar-technologie/sar-signalverarbeitung">DLR signal processing</a>: identifies backprojection among operational research algorithms. Our implementation is direct, not fast factorized.</li>
+<li><a href="https://sentiwiki.copernicus.eu/web/s1-processing">Copernicus S1 processing</a>: real GRD and SLC have different processing and phase properties.</li>
+<li><a href="https://hyp3-docs.asf.alaska.edu/guides/rtc_product_guide/">ASF RTC guide</a>: describes geometric/radiometric corrections and DEM requirements. ASF GAMMA processing is background; the selected Planetary Computer source instead uses Catalyst.</li>
+<li><a href="https://science.nasa.gov/earth/earth-observatory/poyang-lake-extremes-146987/">NASA Poyang Lake Extremes</a>: credible context for contrasting late-2019 and July-2020 lake conditions. Its optical observations are contextual evidence, not pixel truth for our dates.</li>
+<li><a href="https://planetarycomputer.microsoft.com/api/stac/v1/collections/sentinel-1-rtc">Planetary Computer RTC collection metadata</a>: calibrated gamma-zero, Catalyst RTC using PlanetDEM, UTM orthorectification, collection CC-BY-4.0. Exact acquisition properties are retained in data/source/*.json.</li>
+<li><a href="https://ai4edatasetspublicassets.blob.core.windows.net/assets/pdfs/sentinel-1/2011_Flattening_Gamma.pdf">Small 2011, Flattening Gamma</a>: primary radiometric terrain-correction basis linked by the collection.</li>
+<li><a href="https://cds.climate.copernicus.eu/licences/ec-sentinel">Copernicus licence</a>: open use with required source attribution. Derived imagery is attributed as containing modified Copernicus Sentinel data.</li>
+<li><a href="https://numpy.org/doc/stable/reference/routines.fft.html">NumPy FFT</a>, <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.fftconvolve.html">SciPy fftconvolve</a>, <a href="https://rasterio.readthedocs.io/en/stable/topics/windowed-rw.html">Rasterio windows</a>: conventions and public APIs checked, including via Context7.</li>
+<li><a href="https://docs.astral.sh/uv/">uv</a>, <a href="https://docs.astral.sh/ruff/">Ruff</a>, <a href="https://docs.pytest.org/en/stable/">pytest</a>, <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages">GitHub Pages workflows</a>: reproducible environment, bounded checks and static deployment.</li>
+</ul>
+<h2>Research question and scope (design choices)</h2>
+<p>How do controlled platform-velocity mismatch and uncompensated linear Doppler
+phase affect point-target impulse response and localization, and which automated
+diagnostics distinguish defocus from displacement?</p>
+<p>Hypothesis: quadratic phase mismatch broadens the impulse response; linear phase
+can shift a sharp peak and evade width-only acceptance. This connects focusing
+to product reliability without claiming a spaceborne processor or a new algorithm.</p>
+<p>Implement a straight, constant-altitude, broadside, stop-and-go stripmap model
+with a rectangular finite aperture, a small scene and constant scatterer amplitudes.
+Use a single backprojection algorithm with a direct raw-echo matched inner product
+as its independent reference. Ignore Earth curvature, atmospheric propagation,
+antenna gain variation, actual instrument calibration and motion during a pulse.
+No InSAR, deep learning, proprietary StriX data or satellite telemetry.</p>
+<h2>Data and deployment constraints</h2>
+<p>Real study: bounded Poyang Lake VV/VH RTC crops; select same platform/relative
+orbit and retain identifiers. Source products have already been calibrated and
+terrain corrected. Locally crop/regrid, mask invalid intensities and compare
+fixed VV threshold with histogram Otsu. No independent contemporaneous labels
+have yet been verified; report candidate-water extent and method sensitivity,
+not flood accuracy. Spatial blocks, not pixels, define resampling units.
+Sen1Floods11 was considered but rejected because its upstream licence file could
+not be verified. Do not redistribute its labels.</p>
+<p>Anonymous RTC signing/access will be tested before committing to the case.
+Read bounded COG windows rather than multi-GB scenes; retain unsigned source
+URLs, never ephemeral tokens. Bundle small licensed crops for credential-free
+reproduction. Static Pages serves compact generated artifacts; scientific work
+runs offline/CI. Browser controls select independently generated experiment
+variants; geometry formulas alone calculate live. Native static assets and
+hash links avoid server routing and repository-subpath errors.</p>
+<h2>Validation strategy</h2>
+<p>Check analytic rectangular-aperture sinc expectations, chirp width ~0.886 c/(2B),
+azimuth width ~0.886 lambda R/(2L), FFT versus direct convolution and direct
+raw-echo reference; perturbations, complex inputs, corrupted data and cache hashes.
+Widths use half-power crossings; sidelobes use first-minimum boundaries and a
+fixed measurement window. Repeat seeded noise trials and publish effect sizes
+and empirical uncertainty. Bound processing memory and grids. Regenerate all
+tables/figures; retain config, dependency lock hash, source hashes and machine
+details. Verify real CRS, overlap, masks, units and acquisition geometry.
+Inspect deployed site at desktop/mobile and test controls, citations and paths.</p>
+<p>Additional checked primary/library references:
+- <a href="https://research.chalmers.se/en/publication/6728">Ulander, Hellsten and Stenstrom, 2003</a>: related fast factorized backprojection paper, DOI 10.1109/TAES.2003.1238734; bibliographic context, not the implemented optimization.
+- <a href="https://ieeexplore.ieee.org/document/4310076">Otsu, 1979</a>: threshold selection by between-class variance, DOI 10.1109/TSMC.1979.4310076; bibliographic record checked, local histogram equation implemented independently.
+- <a href="https://playwright.dev/docs/test-assertions">Playwright assertions</a>, <a href="https://python-markdown.github.io/">Python Markdown</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">MDN ES modules</a>: static-note generation and browser checks.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/research-brief.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

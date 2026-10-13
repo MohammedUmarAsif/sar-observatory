@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+node_modules/
+artifacts/cache/
+artifacts/runs/
+verification/screenshots/
+*.egg-info/
+test-results/
+playwright-report/
+verification-generation.log

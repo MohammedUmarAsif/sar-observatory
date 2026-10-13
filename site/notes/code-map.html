@@ -1,0 +1,103 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Code map | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Code map</h1>
+<p>Start with the coordinate system, not with the web interface. Every numerical
+module has one responsibility; presentation consumes immutable generated evidence.</p>
+<pre><code class="language-text">configs/demo.json -&gt; config.Sensor
+                    |                 data/source/*.json + data/*.tif
+               simulator.simulate             |
+                    |                       earth.analyze
+            focusing.range_compress           |
+                    |                         |
+             focusing.backproject             |
+                    |                         |
+           metrics.assess + quality_gate       |
+                    |                         |
+              pipeline.run -------------------+
+                    |
+              experiments.generate
+                    |
+          results + site/assets + report
+                    |
+            site/app.js + science.mjs
+</code></pre>
+<h2>First five files</h2>
+<ol>
+<li><code>src/sar_observatory/config.py</code>: units, sensor configuration, sampling validation.</li>
+<li><code>src/sar_observatory/simulator.py</code>: coordinates, delayed LFM chirps, complex phase, seeded noise.</li>
+<li><code>src/sar_observatory/focusing.py</code>: linear matched filtering, backprojection, independent reference.</li>
+<li><code>src/sar_observatory/metrics.py</code>: impulse widths, sidelobes, localization and gates.</li>
+<li><code>src/sar_observatory/pipeline.py</code>: stage contracts, content-addressed cache and provenance.</li>
+</ol>
+<p>Then read <code>earth.py</code>, <code>experiments.py</code>, scientific tests and <code>site/science.mjs</code>.
+The source browser lives on GitHub; documentation pages are statically built
+from the Markdown files. <code>scripts/build_site.py</code> transforms notes without a server.</p>
+<h2>Dependencies and safe changes</h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Inputs and outputs</th>
+<th>Failure modes / validation / safe modification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>SI-unit Sensor dataclass; analytic half-power widths</td>
+<td>Rejects invalid values and supported-scene aliasing. <code>test_units_and_delay</code> and <code>test_sampling_configuration_rejected</code>. Change one parameter; keep fs ≥ 2B and PRF above Doppler support.</td>
+</tr>
+<tr>
+<td>simulator</td>
+<td>Sensor and target (x,y,complex amplitude) tuples -&gt; complex128 [pulse,fast time] plus noise definition</td>
+<td>Checks supported scene and echo truncation. Record-mean SNR includes empty range bins. Stop-and-go/flat terrain/constant amplitudes omit real radiometry. Noise-power and seed tests. Add scatterers only within checked extent; do not discard imaginary values.</td>
+</tr>
+<tr>
+<td>focusing</td>
+<td>complex128 echo -&gt; compressed record -&gt; complex [y,x] image</td>
+<td>Range interpolation attenuates fractional-delay peaks; phase sign and reference energy matter. Direct convolution and raw-inner-product tests bypass the implementation. Increase fs or add a validated sinc interpolator before claiming higher accuracy.</td>
+</tr>
+<tr>
+<td>metrics</td>
+<td>uniform 1D metre axes + complex profiles; image + target truth -&gt; metric dictionaries</td>
+<td>Windows can truncate a response; noise produces unstable minima. Half-power crossings are interpolated in power. Sinc test supplies analytic PSLR and width evidence. Change gates through explicit design criteria rather than tuning to make failures pass.</td>
+</tr>
+<tr>
+<td>pipeline</td>
+<td>validated Sensor, optional externally supplied complex echo, experimental settings -&gt; manifest + stage arrays</td>
+<td>Nonfinite/real-valued/wrong-shape input stops before cache. Cache keys include raw/source/lock hashes. Cached NPZ file hash is verified. Performance is sampled process RSS, not exact allocation accounting. Modify stages without weakening provenance or validation.</td>
+</tr>
+<tr>
+<td>earth</td>
+<td>pinned unsigned STAC records + common-grid linear gamma-zero GeoTIFFs -&gt; candidate masks and area statistics</td>
+<td>Rejects CRS/grid mismatch and poor common coverage. No new calibration or terrain correction is performed. Positive finite intensity mask excludes source nodata; no explicit layover map is supplied. Threshold assumptions can fail badly. Maintain same-platform/orbit checks and validate a new AOI independently.</td>
+</tr>
+<tr>
+<td>experiments</td>
+<td>fixed config + seeds + licensed real crops -&gt; machine-readable tables, plots, inventory and generated report</td>
+<td>Point metrics deliberately use isolated targets; extended scene is only a qualitative example. Changing experiment definitions changes source hashes and invalidates cache. Regenerate the complete report after changes.</td>
+</tr>
+<tr>
+<td>science.mjs/app.js</td>
+<td>published JSON and native controls -&gt; figures/readouts</td>
+<td>Geometry is live; SAR cases are precomputed. Live water masks use averaged 40 m display values, unlike 10 m analysis. Node and browser tests check formulas and interactions. Preserve labels when changing data reduction or control behavior.</td>
+</tr>
+</tbody>
+</table>
+<h2>Reading exercise</h2>
+<p>Before executing anything, predict which exponential must be conjugated to
+cancel carrier phase. Trace one target through <code>simulate</code>, <code>range_compress</code>,
+<code>backproject</code> and <code>assess</code>. Explain why converting the raw array to <code>abs(raw)**2</code>
+destroys the information required by the focuser. The rejection test supplies
+a useful interview demonstration.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/code-map.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

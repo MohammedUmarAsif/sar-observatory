@@ -1,0 +1,43 @@
+[project]
+name = "sar-observatory"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "markdown>=3.11",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "psutil>=7.2.2",
+    "rasterio>=1.5.2",
+    "requests>=2.34.2",
+    "scipy>=1.18.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.0",
+    "ty>=0.0.86",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "--cov=sar_observatory --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "NPY"]
+
+[tool.ty.environment]
+extra-paths = ["src"]
+
+[tool.uv]
+package = true
+
+[build-system]
+requires = ["uv_build>=0.11.15,<0.12"]
+build-backend = "uv_build"

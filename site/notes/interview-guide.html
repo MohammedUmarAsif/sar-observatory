@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Interview guide | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Interview guide</h1>
+<p>Use this portfolio as implemented evidence, not as a substitute for employment
+experience. It was created with Codex assistance. Before presenting it, reproduce
+the outputs yourself, inspect every numerical module and complete the exercises.
+Say what you understand and what you are still learning. There is no Synspective
+affiliation or claim of a novel algorithm, PhD thesis or production spaceborne processor.</p>
+<h2>Five-minute demonstration</h2>
+<p><strong>0:00-0:45. Question and scope.</strong> Open the observatory. Explain that one coherent
+airborne-scale simulator connects geometry errors to automated image quality.
+Real Sentinel-1 RTC is a separate intensity workflow. State the research question.</p>
+<p><strong>0:45-1:45. Coherent formation.</strong> Show the scene, raw echoes, matched filter and
+focused scene. Explain delay versus carrier phase and why intensity alone cannot
+be refocused. Show one equation mapped to a real source function and a test.</p>
+<p><strong>1:45-2:45. Failure diagnosis.</strong> Select velocity +3%, then residual Doppler +4 Hz.
+Compare width and peak power, then localization. Explain why width-only acceptance
+fails for a displaced but sharp target. Show the recorded corrupted-input rejection.</p>
+<p><strong>2:45-3:45. Real scene.</strong> Compare December/July VV intensity and the two candidate
+water methods. Otsu's per-date threshold changes the inferred temporal contrast.
+No labels means no accuracy score; contextual NASA evidence is not pixel truth.</p>
+<p><strong>3:45-5:00. Defend and reproduce.</strong> Open the report, manifest and code map.
+Explain seeds, hashes, locked environment, analytic/direct references and block
+resampling. Close with one limitation you could address next: independently
+validated geometric registration or compatible water reference labels.</p>
+<h2>Twenty-minute technical walkthrough</h2>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Repository evidence</th>
+<th>Explain / challenge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-3 min</td>
+<td>config.py + demo.json</td>
+<td>Coordinates, fs/PRF, aperture definition, stop-and-go validity</td>
+</tr>
+<tr>
+<td>3-6 min</td>
+<td>simulator.py</td>
+<td>Range history, delayed chirp, carrier phase sign, complex Gaussian noise</td>
+</tr>
+<tr>
+<td>6-10 min</td>
+<td>focusing.py + tests</td>
+<td>Linear convolution, conjugation, normalization, fractional delay, direct reference</td>
+</tr>
+<tr>
+<td>10-13 min</td>
+<td>metrics.py + profiles</td>
+<td>Power versus amplitude, width convention, first-minimum windows, gate ablation</td>
+</tr>
+<tr>
+<td>13-16 min</td>
+<td>pipeline.py + manifests</td>
+<td>Input rejection, cache corruption, source/config/lock hashes, memory limitations</td>
+</tr>
+<tr>
+<td>16-19 min</td>
+<td>earth.py + STAC records</td>
+<td>Calibration supplied upstream, common grid, threshold failure, spatial dependence</td>
+</tr>
+<tr>
+<td>19-20 min</td>
+<td>report + learning plan</td>
+<td>Actual findings, honest authorship, missing evidence and next controlled study</td>
+</tr>
+</tbody>
+</table>
+<h2>Questions with grounded answers</h2>
+<p><strong>Why does a synthetic aperture improve azimuth resolution?</strong> Coherent phase
+changes across platform positions constrain a target's along-track coordinate.
+The rectangular finite aperture produces an approximately sinc-shaped spatial
+response. In our finite-aperture model width scales with λR/(2L); real stripmap
+antenna-limited aperture length introduces the familiar antenna-length relation.</p>
+<p><strong>Why is the echo phase −4πR/λ?</strong> Round-trip distance is 2R. Carrier phase is
+2π times path divided by wavelength, with the receive/baseband convention's
+negative sign. Backprojection compensates with the opposite sign. State the
+chosen convention rather than assuming every reference uses the same sign.</p>
+<p><strong>Why a chirp instead of a short pulse?</strong> It combines a longer energy-bearing
+transmission with compressed delay resolution driven by bandwidth. Matched
+filtering correlates with the known waveform; the nominal BT is modest and
+finite-duration effects are visible. The project does not model transmitter power.</p>
+<p><strong>Where is the FFT?</strong> <code>scipy.signal.fftconvolve</code> performs range filtering efficiently
+using padded transforms. The educational azimuth focuser uses direct geometric
+summation; it is not a frequency-domain azimuth FFT processor. This avoids a false
+claim about algorithms not implemented here.</p>
+<p><strong>Why not use <code>abs(raw)</code> before focusing?</strong> Magnitude discards the phase history.
+Correct complex-number handling is central to coherent imaging; the pipeline
+rejects detected intensity as raw input. SLC and GRD cannot be interchanged.</p>
+<p><strong>What is range-cell migration?</strong> Slant range changes over the aperture. A target's
+echo moves in delay. Backprojection samples each predicted exact delay, so migration
+is handled geometrically without a separate interpolation stage in range-Doppler space.</p>
+<p><strong>Why does velocity error blur the target?</strong> The assumed trajectory changes the
+range curvature and predicted phase. Residual quadratic phase prevents coherent
+summation. Width and peak power expose it. The fractional error is in the focuser;
+the simulated acquisition is held fixed.</p>
+<p><strong>Why can Doppler error keep an image sharp?</strong> Linear slow-time phase changes
+spatial phase slope and shifts the along-track peak. The small-angle predicted
+shift magnitude fₑλR/(2v) agrees with the test; localization catches what width misses.</p>
+<p><strong>What is resolution versus spacing?</strong> Sampling grid spacing controls how densely
+we describe an impulse response. It does not define physical resolution. Real
+10 m RTC pixels derive from a GRD product with coarser source resolution metadata.</p>
+<p><strong>Why ground-range resolution differs from slant?</strong> Flat-ground projection divides
+slant width by sin of incidence angle from vertical. Near nadir the ground projection
+becomes ill-conditioned. The browser limits incidence to a reasonable range.</p>
+<p><strong>How are PSLR and ISLR defined?</strong> Both use power ratios in dB. PSLR uses the
+strongest sidelobe sample; ISLR sums energy outside the first-minimum mainlobe
+within a declared finite window. These 1D cuts are not interchangeable with a
+mission's 2D quality specification or tapered processing convention.</p>
+<p><strong>Is the simulator radiometrically calibrated?</strong> No. Target amplitudes are arbitrary.
+Carrier phase and delay are physical; gain, R⁻⁴ propagation loss, antenna pattern,
+system transfer function and actual radar calibration are omitted. Peak power
+compares controlled synthetic runs, not calibrated sigma-zero.</p>
+<p><strong>How does noise differ from speckle?</strong> Additive receiver noise is modeled as
+circular complex Gaussian noise. Speckle arises from coherent scattering within
+resolution cells and depends on ensemble and multilook statistics. The extended
+patch illustrates interference but does not validate a complete speckle distribution.</p>
+<p><strong>Why gamma-zero rather than sigma-zero here?</strong> The real source delivers
+terrain-corrected gamma-zero intensity. Respect that product's radiometric definition;
+do not relabel it as sigma-zero. Conversion to dB uses 10log₁₀(power), not 20log₁₀.</p>
+<p><strong>Can these real products yield interferometric coherence?</strong> No. Detected RTC
+intensity lacks valid complex phase. Interferometry needs compatible complex SLCs,
+precise co-registration, geometry/baseline handling and phase-noise considerations.</p>
+<p><strong>Is Otsu better than a fixed threshold?</strong> This experiment cannot establish accuracy
+without independent labels. Otsu selects class separation from each histogram; the
+different thresholds drastically change temporal-area interpretation. Adaptivity
+is a mechanism, not a guarantee of validity or improvement.</p>
+<p><strong>Why not bootstrap every pixel?</strong> Neighboring radar pixels are spatially dependent.
+The project resamples paired blocks and compares block sizes. Those intervals describe
+within-crop heterogeneity; they do not include label error, registration or algorithm bias.</p>
+<p><strong>What happens to corrupt data?</strong> Shape, complex dtype and finite-value validation
+stop invalid raw input before processing. Cached files are hashed before reuse.
+The test tampers a stage file and demonstrates recomputation, not silent use.</p>
+<p><strong>How would you scale this?</strong> Chunk/grid tiling, validated optimized backprojection
+or an appropriate frequency-domain algorithm, calibrated numerical precision,
+worker isolation, observability and explicit memory budgets. Benchmark complete
+products on representative inputs before calling it a production architecture.</p>
+<p><strong>What is numerically sensitive?</strong> Carrier phase at large R/λ, fractional-delay
+interpolation, chirp alignment, under-sampling, logarithms near zero and first-minimum
+metrics in noisy profiles. Float64 complex processing limits phase error here;
+mixed precision would require a new accuracy-versus-speed experiment.</p>
+<h2>Challenging follow-ups</h2>
+<ul>
+<li>Derive the linear-Doppler shift from the broadside range expansion, including sign.</li>
+<li>Predict the sidelobe and width tradeoff of Hann aperture weighting before coding it.</li>
+<li>Explain why the direct reference peak differs slightly from interpolated backprojection.</li>
+<li>Design a test that detects an accidental circular-convolution wraparound.</li>
+<li>Propose a rigorous threshold-transfer study using independent calibration/evaluation areas.</li>
+<li>Identify missing terrain masks and explain their possible effects on false candidates.</li>
+<li>Define how to certify geometric accuracy without known target truth in a real crop.</li>
+<li>Explain why block-size sensitivity does not prove residual spatial independence.</li>
+<li>Estimate computational complexity O(Npulse × Npixel) and memory allocation drivers.</li>
+<li>Describe what production experience and mission-specific knowledge this project does not establish.</li>
+</ul></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/interview-guide.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>

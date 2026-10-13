@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mathematics to code | SAR Observatory</title>
+<link rel="stylesheet" href="../style.css"><link rel="icon" href="../favicon.svg"></head><body>
+<header class="nav"><a class="brand" href="../index.html">SAR OBSERVATORY</a>
+<nav aria-label="Documentation navigation"><a href="../index.html#laboratory">Laboratory</a>
+<a href="code-map.html">Code map</a><a href="learning-plan.html">Learn</a>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory">Source ↗</a></nav></header>
+<main class="wrap document"><a class="back-link" href="../index.html">← Back to the observatory</a>
+<h1>Mathematics to code</h1>
+<h2>Coordinate system and dimensions</h2>
+<p>Cartesian coordinates in metres: platform <code>p(η)=(vη,0,h)</code>; scatterer
+<code>q=(x,y,0)</code>. x is along track, y is ground range and z is up.
+η is slow time in seconds; t is fast time in seconds. The ground is flat,
+the platform is straight and velocity constant. This is a stop-and-go model:
+motion during pulse propagation is neglected. Image arrays are <code>[y,x]</code>,
+raw arrays <code>[pulse,fast-time sample]</code>. Sampling a complex baseband signal
+does not mean sampling a real carrier at its microwave frequency.</p>
+<h2>Equations, exact functions and checks</h2>
+<table>
+<thead>
+<tr>
+<th>Mathematics</th>
+<th>Code</th>
+<th>Independent/behavior check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rⱼ(η)=sqrt((vη−xⱼ)²+yⱼ²+h²), τⱼ=2Rⱼ/c</td>
+<td><code>simulator.axes</code>, <code>simulator.simulate</code></td>
+<td><code>test_units_and_delay</code> checks centre delay and sample spacings</td>
+</tr>
+<tr>
+<td>p(u)=rect(u/T) exp(iπ(B/T)u²)</td>
+<td><code>simulator.chirp</code></td>
+<td><code>test_complex_matched_filter_matches_direct_convolution</code></td>
+</tr>
+<tr>
+<td>s(η,t)=Σ aⱼ p(t−τⱼ) exp(−i4πRⱼ/λ)</td>
+<td><code>simulator.simulate</code></td>
+<td><code>test_point_resolution_and_independent_reference</code> uses delay-specific raw templates</td>
+</tr>
+<tr>
+<td>sᶜ=s * p*(−t), divided by Σ</td>
+<td>p</td>
+<td>²</td>
+</tr>
+<tr>
+<td>I(q)=N⁻¹ Σ sᶜ(η,2R(q,η)/c) exp(+i4πR(q,η)/λ)</td>
+<td><code>focusing.backproject</code></td>
+<td>Independent raw-echo inner product at target and off-target pixels</td>
+</tr>
+<tr>
+<td>δr₋₃dB≈0.886 c/(2B); δy≈δr/sinθ</td>
+<td><code>config.Sensor.expected_widths</code></td>
+<td>bandwidth halving doubles measured ground width within stated numerical tolerance</td>
+</tr>
+<tr>
+<td>δx₋₃dB≈0.886 λR/(2L)</td>
+<td>same function</td>
+<td>aperture halving and nominal-target tests</td>
+</tr>
+<tr>
+<td>Δx≈fₑ λR/(2v) in small-angle broadside geometry</td>
+<td><code>simulate(doppler_hz=...)</code></td>
+<td><code>test_doppler_shift_evades_width_gate</code>, magnitude and width checks</td>
+</tr>
+<tr>
+<td>PSLR=10 log₁₀(max Pside/Ppeak)</td>
+<td><code>metrics.impulse_metrics</code></td>
+<td>analytic sinc-amplitude profile gives approximately −13.261 dB</td>
+</tr>
+<tr>
+<td>ISLR=10 log₁₀(ΣPside/ΣPmain)</td>
+<td>same function</td>
+<td>finite-window sinc check; window explicitly differs from infinite integration</td>
+</tr>
+<tr>
+<td>dB=10 log₁₀(γ⁰); area=count × pixel area</td>
+<td><code>earth.load_pair</code>, <code>analyze</code></td>
+<td>common-grid fixture, area accounting and provenance tests</td>
+</tr>
+<tr>
+<td>σ²between=w₀w₁(μ₀−μ₁)²</td>
+<td><code>earth.otsu_threshold</code></td>
+<td>two-separated-population test, constant-histogram rejection</td>
+</tr>
+</tbody>
+</table>
+<p>The resolution factors assume rectangular weighting and approximately linear
+spatial phase near broadside. They are half-power full widths; c/(2B) and
+λR/(2L) without 0.886 are characteristic first-null spacings, not identical
+width conventions. Finite chirp duration, interpolation, discrete aperture,
+finite measurement windows and ground projection explain numerical differences.</p>
+<h2>FFT and conjugation</h2>
+<p>The matched filter reverses time and conjugates complex phase. <code>fftconvolve</code>
+implements <strong>linear</strong> convolution, including sufficient padding. It is not a
+bare circular FFT product. An odd-length reference chirp preserves centre
+alignment in <code>same</code> mode. NumPy's default FFT is unnormalized forward, inverse
+normalized by transform length; changing normalization requires adjusting gain.
+<code>np.vdot(template, raw)</code> conjugates its first argument and serves as the separate
+delay-specific reference calculation. Complex interpolation applies to real and
+imaginary components, never to phase angles wrapped at ±π.</p>
+<h2>Impulse measurement conventions</h2>
+<p>P=|I|². Width crosses P/Ppeak=0.5 with linear interpolation on each side.
+No interpolation-based increase in physical resolving power is claimed.
+Cuts pass through the 2D peak; localization uses the nearest image-grid sample
+relative to known isolated-target coordinates. The discretization allowance is
+2dx for widths; the location is quantized to dx/2 and dy/2 per coordinate.
+First neighboring local minima define the mainlobe; outside it, all samples in
+the supplied window contribute to ISLR. Windows are x ±8 m and y ±30 m.
+These are 1D cut metrics, not 2D sidelobe specifications. Discrete minima may
+not coincide with exact analytic nulls, especially with noise or severe defocus.</p>
+<h2>Noise, speckle and uncertainty</h2>
+<p>Injected circular complex Gaussian noise has E|n|²=σ²: each quadrature variance
+is σ²/2. Record SNR is mean clean echo power over all recorded samples divided
+by injected noise power. It is not focused target SNR or noise-equivalent sigma
+zero. Independent seeded repetitions assess variability, not scene-wide speckle
+statistics. The extended patch has random complex scatterer phases, but a proper
+distributed-target speckle model needs many scatterers per resolution cell and
+validated ensemble statistics. Real intensity includes source multilooking;
+the simulator does not reproduce its equivalent number of looks.</p>
+<p>Spatial-block resampling estimates heterogeneity within one fixed real crop.
+It is not a flood-area accuracy confidence interval, and blocks may still be
+correlated. Multiple block sizes expose sensitivity. Independent validation
+requires temporally compatible reference labels and geographic holdouts.</p></main><footer class="wrap">
+<p>Educational research portfolio developed with Codex assistance.</p>
+<a href="https://github.com/MohammedUmarAsif/sar-observatory/blob/main/docs/math-to-code.md">
+Read this source on GitHub ↗</a></footer>
+</body></html>
